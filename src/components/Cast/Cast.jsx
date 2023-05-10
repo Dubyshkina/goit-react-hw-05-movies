@@ -18,7 +18,7 @@ const Cast = () => {
     };
     fetchCast(cast);
    
-  }, []);
+  }, [cast, movieId]);
 
   if (cast === null) {
     return null;

@@ -24,7 +24,7 @@ const MovieDetails = () => {
       }
     };
     fetchDetails();
-  }, []);
+  }, [movieId]);
 
   if (movie === null) {
     return null;

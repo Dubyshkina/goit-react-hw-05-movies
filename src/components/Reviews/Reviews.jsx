@@ -11,7 +11,6 @@ const Reviews = () => {
     const fetchReviews = async () => {
       try {
         const data = await getMovieReviews(movieId);
-       
         setReviews(data);
       } catch (error) {
         console.log(error);
@@ -19,7 +18,7 @@ const Reviews = () => {
     };
     fetchReviews();
     
-  }, []);
+  }, [movieId]);
   if (reviews === null || reviews.length === 0) {
     return <p>No reviews found</p>;
   }
