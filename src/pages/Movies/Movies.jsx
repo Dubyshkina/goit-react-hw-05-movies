@@ -7,6 +7,8 @@ import s from './Movies.module.css';
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [hasInputValue, setHasInputValue] = useState('');
+ 
 
   const fetchSearchedMovies = async query => {
     if (query === null) {
@@ -16,16 +18,19 @@ const Movies = () => {
       const data = await getSearchedMovie(query);
       setMovies(data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
   const handleMovieSubmit = e => {
     e.preventDefault();
     const input = e.currentTarget.elements.name.value;
-    setSearchParams({ query: input });
+    setSearchParams({query: input});
   };
-
+  const updateQueryStr = (e) => {
+    setHasInputValue(e.currentTarget.value);
+  }
+  
   useEffect(() => {
     const query = searchParams.get('query');
     fetchSearchedMovies(query);
@@ -34,8 +39,8 @@ const Movies = () => {
   return (
     <div>
       <form action="" onSubmit={handleMovieSubmit}>
-        <input type="text" name="name" placeholder="Search movie..." />
-        <button type="submit" className={s.button}>
+        <input type="text" name="name" placeholder="Search movie..." onChange={(e) => updateQueryStr(e)} />
+        <button  disabled={!hasInputValue} type="submit" className={s.button}>
           Search
         </button>
       </form>

@@ -1,6 +1,5 @@
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { useParams, useLocation, Link, Outlet } from 'react-router-dom';
-// import { IoChevronBack } from 'react-icons/io5';
 import { getMovieDetails } from 'services/Api';
 import { ColorRing } from 'react-loader-spinner';
 
